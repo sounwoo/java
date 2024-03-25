@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-<h5 >질문등록</h5>
-<form th:action="@{/question/create}" th:object="${questionForm}" method="post">
+<h5>질문등록</h5>
+<form method="post" th:action="@{/question/create}" th:object="${questionForm}">
     <div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">
-        <div th:each="err : ${#fields.allErrors()}" th:text="${err}" />
+        <div th:each="err : ${#fields.allErrors()}" th:text="${err}"/>
     </div>
     <div class="mb-3">
-        <label th:for="subject" class="form-label">제목</label>
-        <input type="text" th:field="*{subject}" class="form-control">
+        <label class="form-label" th:for="subject">제목</label>
+        <input class="form-control" th:field="*{subject}" type="text">
     </div>
     <div class="mb-3">
-        <label th:for="content" class="form-label">내용</label>
-        <textarea th:field="*{content}" class="form-control" rows="10"></textarea>
+        <label class="form-label" th:for="content">내용</label>
+        <textarea class="form-control" rows="10" th:field="*{content}"></textarea>
     </div>
-    <input type="submit" value="저장하기" class="btn btn-primary my-2">
+    <input class="btn btn-primary my-3" sec:authorize="isAuthenticated()" type="submit" value="저장하기">
 </form>
 </html>

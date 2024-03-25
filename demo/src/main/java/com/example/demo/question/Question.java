@@ -1,6 +1,7 @@
 package com.example.demo.question;
 
 import com.example.demo.answer.Answer;
+import com.example.demo.user.SiteUser;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -29,4 +30,9 @@ public class Question {
     // 설정 안할시 question.getAnswerList를 조회시 에러(DB세션이 종료되어 가져오지 못함)
     @OneToMany(mappedBy = "question", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     private List<Answer> answerList;
+
+    @ManyToOne
+    private SiteUser author;
+
+    private LocalDateTime modifyDate;
 }

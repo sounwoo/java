@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <h1>[[${siteUser.email}]]</h1>
+  <div>[[${siteUser.username}]]</div>
+  <a sec:authorize="isAuthenticated()" th:href="@{/user/logout}">로그아웃</a>
+</body>
+</html>

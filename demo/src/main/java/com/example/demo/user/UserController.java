@@ -2,13 +2,16 @@ package com.example.demo.user;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
+import java.security.Principal;
 
 @RequiredArgsConstructor
 @Controller
@@ -24,6 +27,14 @@ public class UserController {
     @GetMapping("/login")
     public String login(){
         return "login_form";
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("/get")
+    public String getUser(Model model, Principal principal){
+        SiteUser siteUser = this.userService.getUser(principal.getName());
+        model.addAttribute("siteUser", siteUser);
+        return "get_user";
     }
     @PostMapping("signup")
     public String signup(@Valid UserCreateForm userCreateForm, BindingResult bindingResult){

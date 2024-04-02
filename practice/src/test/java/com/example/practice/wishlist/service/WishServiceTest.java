@@ -16,7 +16,7 @@ public class WishServiceTest {
         // naver seach moking 처리해서 테스트 코드 작성해야됨
         var result = wishListService.search("갈비집");
 
-        System.out.println(result);
+        System.out.println("reuslt : " + result);
         Assertions.assertNotNull(result);
     }
 }

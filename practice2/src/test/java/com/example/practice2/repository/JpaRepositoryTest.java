@@ -1,11 +1,10 @@
 package com.example.practice2.repository;
 
-import com.example.practice2.apis.domain.Article;
+import com.example.practice2.domain.Article;
 import com.example.practice2.config.JpaConfig;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 
@@ -76,7 +75,7 @@ class JpaRepositoryTest {
     @Test
     void givenTestData_whenDeleting_thenWorksFine(){
         // given
-        Article article = articleRepository.findById(7L).orElseThrow();
+        Article article = articleRepository.findById(9L).orElseThrow();
         long previousArticleCount = articleRepository.count();
         long previousArticleCommentCount = articleCommentRepository.count();
         int deletedCommentsSize = article.getArticleComments().size();

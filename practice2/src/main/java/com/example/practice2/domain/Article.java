@@ -1,4 +1,4 @@
-package com.example.practice2.apis.domain;
+package com.example.practice2.domain;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -24,8 +24,8 @@ import java.util.Set;
         @Index(columnList = "createAt"),
         @Index(columnList = "createBy")
 })
-@EntityListeners(AuditingEntityListener.class)
-public class Article {
+//@EntityListeners(AuditingEntityListener.class)
+public class Article extends AuditingFields {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,21 +42,24 @@ public class Article {
     @Setter
     private String hashtag; // 해시태그
 
-    @CreatedDate
-    @Column(nullable = false)
-    private LocalDateTime createAt; // 생성일시
+    //    @CreatedDate
+    //    @Column(nullable = false)
+    //    private LocalDateTime createAt; // 생성일시
+    //
+    //    @CreatedBy
+    //    @Column(nullable = false, length = 100)
+    //    private String createBy; // 생성자
+    //
+    //    @LastModifiedDate
+    //    @Column(nullable = false)
+    //    private LocalDateTime modifiedAt; // 수정일시
+    //
+    //    @LastModifiedBy
+    //    @Column(nullable = false, length = 100)
+    //    private String modifiedBy; // 수정자
 
-    @CreatedBy
-    @Column(nullable = false, length = 100)
-    private String createBy; // 생성자
-
-    @LastModifiedDate
-    @Column(nullable = false)
-    private LocalDateTime modifiedAt; // 수정일시
-
-    @LastModifiedBy
-    @Column(nullable = false, length = 100)
-    private String modifiedBy; // 수정자
+    // @Embedded -> 공통 필드를 class 작성 -> 필드를 AA aa
+    // @MappedSuperclass 사용 할수 있음
 
     @ToString.Exclude // 순한참조 방지
     @OrderBy("id")
